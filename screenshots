@@ -1,1 +1,27 @@
+## Screenshots Included screenshots showing:
+- FastAPI Swagger interface
+- Celery worker running
+- Redis server running
+- Task processing output
+- Financial analysis report generated
 
+### API Documentation (FastAPI Swagger)
+![API Docs]
+<img width="1920" height="1080" alt="api_docs" src="https://github.com/user-attachments/assets/03deb4df-0102-4c41-b876-659d5ae238a5" />
+
+### Celery Worker Processing Task
+![Celery Worker]
+<img width="1920" height="1080" alt="celery_worker (2)" src="https://github.com/user-attachments/assets/785fa361-b00a-4c1c-bc10-7f360638ce06" />
+<img width="1920" height="1080" alt="celery_worker (1)" src="https://github.com/user-attachments/assets/59c810bf-f6dd-48c6-8651-a3f132cc7e40" />
+<img width="1920" height="1080" alt="celery_worker (4)" src="https://github.com/user-attachments/assets/5bc6fc6b-a5d5-41c0-b7dc-8f09ad661d47" />
+<img width="1920" height="1080" alt="celery_worker (3)" src="https://github.com/user-attachments/assets/4752d769-324f-4396-86f1-be635f823447" />
+
+### Financial Analysis Output
+![Analysis Output]
+<img width="1920" height="1080" alt="api_execution" src="https://github.com/user-attachments/assets/6198973d-34ed-4215-b407-7060fb9b07d7" />
+
+### Project Structure in VS Code
+![Project Structure]
+<img width="224" height="403" alt="project_structure" src="https://github.com/user-attachments/assets/3a1123f6-beeb-4498-ac01-e77c3e6bff5e" />
+
+---
