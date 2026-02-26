@@ -1,5 +1,8 @@
 # Financial Document Analyzer using CrewAI, FastAPI, Celery, and Redis
 
+## Assignment Submission Repository:
+https://github.com/amaanchaudhary7867-oss/financial-analyzer-assignment
+
 ## Overview
 
 This project implements an AI-powered Financial Document Analyzer that reads financial PDF documents and generates a structured financial analysis report.
