@@ -53,7 +53,8 @@ Workflow:
 
 Step 1: Clone repository
 
-git clone https://github.com/amaanchaudhary7867-oss/financial-analyzer-assignment.git  
+git clone https://github.com/amaanchaudhary7867-oss/financial-analyzer-assignment.git
+
 cd financial-analyzer-assignment  
 
 Step 2: Create virtual environment
@@ -116,9 +117,13 @@ Modified worker task to print full result instead of returning truncated respons
 ---Installation Instructions
 
 Step 1: Clone repository
-git clone https://github.com/yourusername/financial-analyzer.git
+
+git clone https://github.com/amaanchaudhary7867-oss/financial-analyzer.git 
+
 cd financial-analyzer
+
 Step 2: Create virtual environment
+
 python -m venv venv
 
 Activate:
@@ -126,27 +131,37 @@ Activate:
 Windows:
 
 venv\Scripts\activate
+
 Step 3: Install dependencies
+
 pip install -r requirements.txt
+
 Step 4: Start Redis server
+
 redis-server
+
 Step 5: Configure environment variables
 
 Create .env file:
 
 GROQ_API_KEY=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
+
 Step 6: Start FastAPI server
+
 uvicorn main:app --reload
 
 Open:
 
 http://127.0.0.1:8000/docs
+
 Step 7: Start Celery worker
 
 Open new terminal:
 
 celery -A worker worker --loglevel=info --pool=solo
+
 API Documentation
+
 Endpoint: Upload Financial Document
 
 POST /analyze
