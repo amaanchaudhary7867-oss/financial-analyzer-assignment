@@ -49,67 +49,72 @@ Workflow:
 - PyPDF
 - Uvicorn
 
+## Setup Instructions
+
+Step 1: Clone repository
+
+git clone https://github.com/amaanchaudhary7867-oss/financial-analyzer-assignment.git  
+cd financial-analyzer-assignment  
+
+Step 2: Create virtual environment
+
+python -m venv venv  
+
+Activate:
+
+Windows:
+venv\Scripts\activate  
+
+Step 3: Install dependencies
+
+pip install -r requirements.txt  
+
+Step 4: Add environment variable
+
+Create .env file:
+
+GROQ_API_KEY=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  
+
+Step 5: Start Redis
+
+redis-server  
+
+Step 6: Start Celery worker
+
+celery -A worker worker --loglevel=info --pool=solo  
+
+Step 7: Start FastAPI
+
+uvicorn main:app --reload  
+
+Open browser:
+
+http://127.0.0.1:8000/docs
+
 ---
 
-## Bugs Found and Fixes
+## Bugs Found and Fixes 
 
-### Bug 1: Tool validation error
+### Bug 1: Redis connection error 
+Error: ``` Could not create server TCP listening socket ``` 
+Fix: Started Redis server manually using: ``` redis-server ```
+--- 
 
-Error:
+### Bug 2: Tool validation error in CrewAI 
+Error: ``` Input should be instance of BaseTool ``` 
+Fix: Converted tool function into CrewAI Tool class. 
+--- 
 
+### Bug 3: Celery worker import error 
+Error: ``` Unable to load celery application ``` 
+Fix: Corrected module imports and verified worker.py location. 
+--- 
 
-ValidationError: tools.0 Input should be a valid dictionary or BaseTool
+### Bug 4: Output truncation in Celery Fix: 
+Modified worker task to print full result instead of returning truncated response. 
 
+---Installation Instructions
 
-Cause:
-
-CrewAI expects tools to be defined using the `@tool` decorator, not plain functions.
-
-Fix:
-
-Updated tools.py:
-
-Before:
-
-```python
-def read_data_tool(file_path):
-
-After:
-
-from crewai.tools import tool
-
-@tool("Financial Document Reader")
-def read_data_tool(file_path: str) -> str:
-Bug 2: Celery output truncation
-
-Problem:
-
-Celery was truncating output because return value was too large.
-
-Fix:
-
-Removed return statement and used print():
-
-Before:
-
-return result
-
-After:
-
-print(result)
-Bug 3: Agent calling tool multiple times
-
-Problem:
-
-Agent repeatedly called the tool unnecessarily.
-
-Fix:
-
-Improved task instructions:
-
-Use the Financial Document Reader tool ONLY ONCE.
-After reading, DO NOT use any tool again.
-Installation Instructions
 Step 1: Clone repository
 git clone https://github.com/yourusername/financial-analyzer.git
 cd financial-analyzer
@@ -129,7 +134,7 @@ Step 5: Configure environment variables
 
 Create .env file:
 
-GROQ_API_KEY=your_groq_api_key
+GROQ_API_KEY=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
 Step 6: Start FastAPI server
 uvicorn main:app --reload
 
@@ -193,17 +198,17 @@ This project uses Celery with Redis to support asynchronous and concurrent proce
 
 Advantages:
 
-Multiple documents can be processed simultaneously
+- Multiple documents can be processed simultaneously
 
-FastAPI remains responsive
+- FastAPI remains responsive
 
-Background processing improves scalability
+- Background processing improves scalability
 
-Production-ready architecture
+- Production-ready architecture
 
-Redis acts as message broker between FastAPI and Celery worker.
+- Redis acts as message broker between FastAPI and Celery worker.
 
-Celery worker continuously listens for new tasks.
+- Celery worker continuously listens for new tasks.
 
 Project Structure
 financial-analyzer/
@@ -232,6 +237,40 @@ Upload financial document
 
 Check Celery terminal for output
 
+---
+## Screenshots
+
+## Screenshots Included screenshots showing:
+- FastAPI Swagger interface
+- Celery worker running
+- Redis server running
+- Task processing output
+- Financial analysis report generated
+
+Screenshots located in: ``` screenshots/ ```
+
+### API Documentation (FastAPI Swagger)
+![API Docs]
+<img width="1920" height="1080" alt="api_docs" src="https://github.com/user-attachments/assets/03deb4df-0102-4c41-b876-659d5ae238a5" />
+
+### Celery Worker Processing Task
+![Celery Worker]
+<img width="1920" height="1080" alt="celery_worker (2)" src="https://github.com/user-attachments/assets/785fa361-b00a-4c1c-bc10-7f360638ce06" />
+<img width="1920" height="1080" alt="celery_worker (1)" src="https://github.com/user-attachments/assets/59c810bf-f6dd-48c6-8651-a3f132cc7e40" />
+<img width="1920" height="1080" alt="celery_worker (4)" src="https://github.com/user-attachments/assets/5bc6fc6b-a5d5-41c0-b7dc-8f09ad661d47" />
+<img width="1920" height="1080" alt="celery_worker (3)" src="https://github.com/user-attachments/assets/4752d769-324f-4396-86f1-be635f823447" />
+
+### Financial Analysis Output
+![Analysis Output]
+<img width="1920" height="1080" alt="api_execution" src="https://github.com/user-attachments/assets/6198973d-34ed-4215-b407-7060fb9b07d7" />
+
+### Project Structure in VS Code
+![Project Structure]
+<img width="224" height="403" alt="project_structure" src="https://github.com/user-attachments/assets/3a1123f6-beeb-4498-ac01-e77c3e6bff5e" />
+
+---
+## Status
+
 Assignment Requirements Completed
 Requirement	Status
 CrewAI agent	Completed
@@ -241,9 +280,19 @@ Celery queue worker	Completed
 Redis integration	Completed
 Async processing	Completed
 Financial analysis	Completed
-Author
+
+---
+
+Author 
 
 Amaan Chaudhary
 Mumbai, India
 +91 76780-94773
 Gmail: amaanchaudhary7867@gmail.com
+GitHub: https://github.com/amaanchaudhary7867-oss/financial-analyzer-assignment
+
+---
+
+## Conclusion 
+
+This project successfully implements a scalable financial document analysis system using AI and asynchronous processing. The system meets all assignment requirements and demonstrates integration of FastAPI, CrewAI, Groq LLM, Celery, and Redis.
